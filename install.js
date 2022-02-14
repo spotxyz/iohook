@@ -31,7 +31,7 @@ function install(runtime, abi, platform, arch, cb) {
 
   console.log('Downloading prebuild for platform:', currentPlatform);
   let downloadUrl =
-    'https://github.com/wilix-team/iohook/releases/download/v' +
+    'https://spot-development.s3.us-west-2.amazonaws.com/spot-desktop/iohook/v' +
     pkgVersion +
     '/' +
     currentPlatform +
