@@ -1,6 +1,6 @@
 {
   "name": "@spotxyz/iohook",
-  "version": "0.9.3",
+  "version": "0.9.3-custom1",
   "description": "Node.js global keyboard and mouse hook",
   "author": "Aloyan Dmitry",
   "license": "MIT",
