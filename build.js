@@ -4,15 +4,17 @@ const path = require('path');
 const tar = require('tar');
 const argv = require('minimist')(process.argv.slice(2), {
   // Specify that these arguments should be a string
-  string: ['version', 'runtime', 'abi'],
+  string: ['version', 'runtime', 'abi', 'arch'],
 });
 const pkg = require('./package.json');
 const nodeAbi = require('node-abi');
 const { optionsFromPackage } = require('./helpers');
+let archString = ('arch' in argv)? argv['arch'] : process.env.ARCH;
 
-let arch = process.env.ARCH
-  ? process.env.ARCH.replace('i686', 'ia32').replace('x86_64', 'x64')
+let arch = archString? archString.replace('i686', 'ia32').replace('x86_64', 'x64')
   : process.arch;
+
+console.log('Building for arch: '+arch);
 
 let gypJsPath = path.join(
   __dirname,
@@ -45,7 +47,7 @@ function initBuild() {
     if (process.env.npm_config_targets === 'all') {
       options.targets = supportedTargets.map((arr) => [arr[0], arr[2]]);
       options.platforms = ['win32', 'darwin', 'linux'];
-      options.arches = ['x64', 'ia32'];
+      options.arches = ['x64', 'ia32', 'arm64'];
     }
     if (process.env.npm_config_platforms) {
       options.platforms = options.platforms.concat(
@@ -145,7 +147,7 @@ function build(runtime, version, abi) {
     }
 
     if (parseInt(abi) >= 80) {
-      if (arch === 'x64') {
+      if (arch === 'x64' || arch === 'arm64') {
         args.push('--v8_enable_pointer_compression=1');
       } else {
         args.push('--v8_enable_pointer_compression=0');
