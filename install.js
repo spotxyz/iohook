@@ -153,7 +153,7 @@ if (options.targets.length > 0) {
     let abi = parts[1];
     options.platforms.forEach(function (platform) {
       options.arches.forEach(function (arch) {
-        if (platform === 'darwin' && arch === 'ia32') {
+        if ((platform === 'darwin' && arch === 'ia32') || (platform === 'win32' && arch === 'arm64')) {
           return;
         }
         chain = chain.then(function () {
