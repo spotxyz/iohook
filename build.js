@@ -140,10 +140,11 @@ function build(runtime, version, abi) {
       'rebuild',
       '--target=' + version,
       '--arch=' + arch,
+      '--openssl_fips=X',
     ];
 
     if (/^electron/i.test(runtime)) {
-      args.push('--dist-url=https://atom.io/download/electron');
+      args.push('--dist-url=https://electronjs.org/headers');
     }
 
     if (parseInt(abi) >= 80) {
@@ -161,6 +162,12 @@ function build(runtime, version, abi) {
       if (parseInt(abi) >= 67) {
         args.push('--enable_lto=false');
       }
+    }
+
+    // electron 20 requires C++17
+    // is there a better way to enable this?
+    if (parseInt(abi) >= 107) {
+      process.env.CXXFLAGS = '-std=c++17';
     }
 
     console.log('Building iohook for ' + runtime + ' v' + version + '>>>>');
