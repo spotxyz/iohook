@@ -7,6 +7,11 @@
 			"src/iohook.cc",
 			"src/iohook.h"
 		],
+		"msbuild_settings": {
+			"ClCompile": {
+				"LanguageStandard": "stdcpp17"
+			}
+		},
 		"dependencies": [
 			"./uiohook.gyp:uiohook"
 		],

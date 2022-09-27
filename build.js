@@ -164,12 +164,6 @@ function build(runtime, version, abi) {
       }
     }
 
-    // electron 20 requires C++17
-    // is there a better way to enable this?
-    if (parseInt(abi) >= 107) {
-      process.env.CXXFLAGS = '-std=c++17';
-    }
-
     console.log('Building iohook for ' + runtime + ' v' + version + '>>>>');
     if (process.platform === 'win32') {
       if (version.split('.')[0] >= 4) {

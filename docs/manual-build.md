@@ -45,11 +45,11 @@ command line arguments:
 For example, to build for Electron v4.0.4, you would run:
 
 ```shell
-node build.js --runtime electron --version 20.0.1 --abi 107 --arch=x64 --upload=false
-node build.js --runtime electron --version 20.0.1 --abi 107 --arch=arm64 --upload=false
+node build.js --runtime electron --version 21.0.0 --abi 109 --arch=x64 --upload=false
+node build.js --runtime electron --version 21.0.0 --abi 109 --arch=arm64 --upload=false
 
 # windows:
-node build.js --runtime electron --version 20.0.1 --abi 107 --arch=x64 --upload=false --msvs_version=2019
+node build.js --runtime electron --version 21.0.0 --abi 109 --arch=x64 --upload=false --msvs_version=2019
 ```
 
 To see more examples of what values to use, view iohook's [package.json file](https://github.com/wilix-team/iohook/blob/master/package.json), under `supportedTargets`. The three values in each block are runtime, version and abi respectively.
